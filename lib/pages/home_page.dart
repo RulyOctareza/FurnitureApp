@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
                 searchBar(),
                 categoryTitle(),
                 categoryItem(),
+                populerItem(),
               ],
             ),
           ),
@@ -43,6 +44,43 @@ class _HomePageState extends State<HomePage> {
       ),
       backgroundColor: kWhiteGreyColor,
       bottomNavigationBar: const ButtonNavbar(),
+    );
+  }
+
+  Widget populerItem() {
+    return Container(
+      margin: EdgeInsets.only(top: 25),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        color: kWhiteColor,
+      ),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(
+              top: 24,
+              left: 24,
+              right: 24,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Populer',
+                    style: blackTextStyle.copyWith(
+                      fontWeight: semibold,
+                      fontSize: 20,
+                    )),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Show All',
+                      style: blackTextStyle,
+                    ))
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
