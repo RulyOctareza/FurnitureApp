@@ -27,7 +27,7 @@ class _SplashPageState extends State<SplashPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
                 width: 82,
                 height: 248,
                 child: Image.asset('assets/logo_light.png')),

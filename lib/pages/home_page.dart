@@ -1,10 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:furniture_app/theme.dart';
 import 'package:furniture_app/widgets/button_navbar.dart';
 import 'package:furniture_app/widgets/home_item_category.dart';
+import 'package:furniture_app/widgets/home_popular_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,27 +19,29 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Image.asset(
-            'assets/image_background.png',
-            alignment: Alignment.topCenter,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Image.asset(
+              'assets/image_background.png',
+              alignment: Alignment.topCenter,
             ),
-            child: ListView(
-              children: [
-                logoCart(),
-                searchBar(),
-                categoryTitle(),
-                categoryItem(),
-                populerItem(),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+              ),
+              child: ListView(
+                children: [
+                  logoCart(),
+                  searchBar(),
+                  categoryTitle(),
+                  categoryItem(),
+                  populerItem(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       backgroundColor: kWhiteGreyColor,
       bottomNavigationBar: const ButtonNavbar(),
@@ -49,15 +50,15 @@ class _HomePageState extends State<HomePage> {
 
   Widget populerItem() {
     return Container(
-      margin: EdgeInsets.only(top: 25),
+      margin: const EdgeInsets.only(top: 25),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
         color: kWhiteColor,
       ),
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
               top: 24,
               left: 24,
               right: 24,
@@ -75,9 +76,43 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       'Show All',
                       style: blackTextStyle,
-                    ))
+                    )),
               ],
             ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          const SizedBox(
+            height: 320,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  HomePopularItem(
+                    title: 'Poan Chair',
+                    imageUrl: 'assets/image_product_popular1.png',
+                    isWhislist: true,
+                    price: 34,
+                  ),
+                  HomePopularItem(
+                    title: 'Poan Chair',
+                    imageUrl: 'assets/image_product_popular2.png',
+                    isWhislist: true,
+                    price: 34,
+                  ),
+                  HomePopularItem(
+                    title: 'Poan Chair',
+                    imageUrl: 'assets/image_product_popular3.png',
+                    isWhislist: true,
+                    price: 34,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 50,
           )
         ],
       ),
@@ -86,7 +121,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget categoryItem() {
     return Container(
-      margin: EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
           CarouselSlider(
@@ -105,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                   subtitle: 'Chair'),
             ],
             options: CarouselOptions(
-              height: 130,
+              height: 90,
               scrollDirection: Axis.horizontal,
               enableInfiniteScroll: false,
               viewportFraction: 1,
@@ -115,9 +150,9 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-            carouselController: controller,
+            
           ),
-          SizedBox(
+          const SizedBox(
             height: 13,
           ),
           Row(
@@ -161,7 +196,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget categoryTitle() {
     return Container(
-      margin: EdgeInsets.only(top: 30),
+      margin: const EdgeInsets.only(top: 30),
       width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -184,13 +219,13 @@ class _HomePageState extends State<HomePage> {
 
   Widget logoCart() {
     return Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 24,
         ),
         child: Column(children: [
           Row(
             children: [
-              Container(
+              SizedBox(
                   width: 53,
                   height: 44,
                   child: Image.asset('assets/logo_dark.png')),
@@ -214,50 +249,56 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           )
         ]));
   }
 
   Widget searchBar() {
-    return Container(
-      height: 56,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
-        color: kWhiteColor,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            margin: EdgeInsets.only(
-              left: 16,
-            ),
-            width: 220,
-            padding: EdgeInsets.symmetric(vertical: 16),
-            child: TextFormField(
-              decoration: InputDecoration.collapsed(
-                hintText: 'Search Furniture',
-                hintStyle: greyTextStyle.copyWith(
-                  fontSize: 16,
-                  fontWeight: semibold,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          '/search',
+          (route) => false,
+        );
+      },
+      child: Container(
+        height: 56,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: kWhiteColor,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+                margin: const EdgeInsets.only(
+                  left: 16,
                 ),
-              ),
-            ),
-          ),
-          Container(
-            height: 44,
-            width: 50,
-            child: IconButton(
-                onPressed: () {},
-                icon: Image.asset(
-                  'assets/icon_search.png',
-                  width: 24,
+                width: 220,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Text(
+                  'Search Furniture',
+                  style: greyTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: semibold,
+                  ),
                 )),
-          ),
-        ],
+            SizedBox(
+              height: 44,
+              width: 50,
+              child: IconButton(
+                  onPressed: () {},
+                  icon: Image.asset(
+                    'assets/icon_search.png',
+                    width: 24,
+                  )),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_app/pages/home_page.dart';
 import 'package:furniture_app/theme.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -261,7 +260,7 @@ class _SigninPageState extends State<SigninPage> {
             isLoading = true;
           });
 
-          Future.delayed(Duration(seconds: 2), () {
+          Future.delayed(const Duration(seconds: 2), () {
             setState(() {
               isLoading = false;
             });

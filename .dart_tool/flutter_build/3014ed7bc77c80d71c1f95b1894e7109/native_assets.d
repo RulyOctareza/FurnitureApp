@@ -1,0 +1,1 @@
+ D:\\DEVELOPMENTS\\MASTERING\ FLUTTER\\FURNITURE\ APP\\furniture_app\\.dart_tool\\flutter_build\\3014ed7bc77c80d71c1f95b1894e7109\\native_assets.yaml: 

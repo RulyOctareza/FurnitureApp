@@ -12,7 +12,7 @@ class OnBoardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnBoardingPage> {
   int currentIndex = 0;
-  CarouselController controller = CarouselController();
+  CarouselSliderControllerImpl controller = CarouselSliderControllerImpl();
 
   @override
   Widget build(BuildContext context) {
