@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_app/theme.dart';
 import 'package:furniture_app/widgets/home_item_category.dart';
-import 'package:furniture_app/widgets/home_popular_item.dart';
 import 'package:furniture_app/widgets/product_grid_item.dart';
 
 class CategoryPage extends StatelessWidget {

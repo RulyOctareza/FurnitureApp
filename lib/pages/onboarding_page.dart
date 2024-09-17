@@ -107,7 +107,7 @@ class _OnboardingPageState extends State<OnBoardingPage> {
                 TextButton(
                   onPressed: () {
                     if (currentIndex == 2) {
-                      Navigator.pushNamed(context, '/homepage');
+                      Navigator.pushNamed(context, '/sign-in');
                     } else {
                       controller.nextPage();
                     }
